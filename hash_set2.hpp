@@ -984,7 +984,8 @@ private:
         //assert(num_buckets > _num_filled);
         auto new_pairs = (PairT*)alloc_bucket(num_buckets);
         auto old_num_filled  = _num_filled;
-        auto old_num_buckets = _num_buckets;
+        // unused
+        /* auto old_num_buckets = _num_buckets; */
         auto old_pairs = _pairs;
 
         _num_filled  = 0;
