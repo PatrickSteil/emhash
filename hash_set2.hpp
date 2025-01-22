@@ -993,12 +993,15 @@ private:
         _last_colls  = num_buckets - 1;
 
         if (bInCacheLine) {
-            memset(_pairs, INACTIVE, sizeof(_pairs[0]) * num_buckets);
+            /* memset(_pairs, INACTIVE, sizeof(_pairs[0]) * num_buckets); */
+            std::fill(_pairs, _pairs + num_buckets, std::make_pair(INACTIVE, INACTIVE));
         } else {
             for (size_type bucket = 0; bucket < num_buckets; bucket++)
                 _pairs[bucket].second = INACTIVE;
         }
-        memset(_pairs + num_buckets, 0, sizeof(_pairs[0]) * 2);
+        /* memset(_pairs + num_buckets, 0, sizeof(_pairs[0]) * 2); */
+        std::fill(_pairs + num_buckets, _pairs + num_buckets + 2, std::make_pair(0, 0));
+
 
         //set all main bucket first
         for (size_type src_bucket = 0; _num_filled < old_num_filled; src_bucket++) {
